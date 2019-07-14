@@ -73,6 +73,11 @@
       "keep_input_artifact": false,
       "output": "builds/{{.BuildName}}.box",
       "compression_level": 9
+    },
+    {
+      "type": "vagrant-cloud",
+      "box_tag": "oatakan/windows-2019-{{user `os_flavor`}}",
+      "version": "{{user `version`}}"
     }
   ]
 }
