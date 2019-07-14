@@ -1,7 +1,7 @@
 {
   "variables": {
     "os_flavor": "standard",
-    "build_name": "windows-2019-{{user `os_flavor`}}-virtualbox",
+    "build_name": "windows-2019-standard-virtualbox",
     "version": "",
     "iso_dir": "/mnt/iso"
   },
