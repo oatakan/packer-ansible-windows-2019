@@ -1,0 +1,17 @@
+---
+- hosts: all
+  vars:
+    ansible_user: vagrant
+    ansible_password: vagrant
+    ansible_port: 2222
+    ansible_connection: winrm
+    ansible_winrm_transport: credssp
+    ansible_winrm_server_cert_validation: ignore
+    ansible_winrm_operation_timeout_sec: 250
+    ansible_winrm_read_timeout_sec: 280
+    install_updates: yes
+    remove_apps: yes
+    clean_up_components: yes
+
+  roles:
+    - oatakan.windows_template_build

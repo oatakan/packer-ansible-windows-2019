@@ -1,0 +1,3 @@
+---
+- src: oatakan.windows_virtualbox_guest_additions
+- src: oatakan.windows_template_build
