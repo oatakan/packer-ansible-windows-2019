@@ -68,14 +68,16 @@
     }
   ],
   "post-processors": [
-    {
-      "type": "vagrant",
-      "output": "builds/{{.BuildName}}.box"
-    },
-    {
-      "type": "vagrant-cloud",
-      "box_tag": "oatakan/windows-2019-{{user `os_flavor`}}",
-      "version": "{{user `version`}}"
-    }
+    [
+      {
+        "type": "vagrant",
+        "output": "builds/{{.BuildName}}.box"
+      },
+      {
+        "type": "vagrant-cloud",
+        "box_tag": "oatakan/windows-2019-{{user `os_flavor`}}",
+        "version": "{{user `version`}}"
+      }
+    ]
   ]
 }
