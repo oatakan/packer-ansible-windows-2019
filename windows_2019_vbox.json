@@ -70,9 +70,7 @@
   "post-processors": [
     {
       "type": "vagrant",
-      "keep_input_artifact": false,
-      "output": "builds/{{.BuildName}}.box",
-      "compression_level": 9
+      "output": "builds/{{.BuildName}}.box"
     },
     {
       "type": "vagrant-cloud",
