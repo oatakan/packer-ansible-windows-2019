@@ -12,6 +12,9 @@
     install_updates: yes
     remove_apps: yes
     clean_up_components: yes
+    local_administrator_password: "{{ ansible_password }}"
+    local_account_username: "{{ ansible_user}}"
+    local_account_password: "{{ ansible_password }}"
 
   roles:
     - oatakan.windows_template_build
