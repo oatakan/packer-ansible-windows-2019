@@ -74,11 +74,6 @@
       {
         "type": "vagrant",
         "output": "builds/{{.BuildName}}.{{user `base_version`}}.{{user `major_version`}}.{{user `version`}}.box"
-      },
-      {
-        "type": "vagrant-cloud",
-        "box_tag": "oatakan/windows-2019-{{user `os_flavor`}}",
-        "version": "{{user `base_version`}}.{{user `major_version`}}.{{user `version`}}"
       }
     ]
   ]
