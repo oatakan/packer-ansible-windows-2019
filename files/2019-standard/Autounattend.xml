@@ -139,7 +139,7 @@
             <Order>1</Order>
             <RequiresUserInput>true</RequiresUserInput>
         </SynchronousCommand>
-                  <SynchronousCommand wcm:action="add">
+        <SynchronousCommand wcm:action="add">
             <CommandLine>cmd.exe /c winrm quickconfig -q</CommandLine>
             <Description>winrm quickconfig -q</Description>
             <Order>2</Order>
