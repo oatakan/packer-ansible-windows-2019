@@ -3,7 +3,7 @@
     "os_flavor": "standard",
     "build_name": "windows-2019-standard-virtualbox",
     "base_version": "1809",
-    "major_version": "01",
+    "major_version": "1",
     "version": "",
     "iso_dir": "/mnt/iso"
   },
