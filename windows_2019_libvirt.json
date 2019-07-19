@@ -1,0 +1,70 @@
+{
+  "variables": {
+    "os_flavor": "standard",
+    "build_name": "windows-2019-standard-libvirt",
+    "base_version": "1809",
+    "major_version": "1",
+    "version": "",
+    "iso_dir": "/mnt/iso"
+  },
+  "builders": [
+    {
+      "name": "{{user `build_name`}}",
+      "vm_name": "{{user `build_name`}}",
+      "type": "qemu",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/libexec/qemu-kvm",
+      "communicator": "winrm",
+      "headless": true,
+      "disk_size": 30720,
+      "iso_urls": [ "file://{{user `iso_dir`}}/17763.253.190108-0006.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us.iso" ],
+      "iso_checksum": "48cd91270581d1be10c3ff3ad6c41cce",
+      "iso_checksum_type": "md5",
+      "http_directory": "scripts",
+      "winrm_username": "vagrant",
+      "winrm_password": "vagrant",
+      "winrm_port": 5986,
+      "winrm_timeout": "4h",
+      "winrm_use_ssl": "true",
+      "winrm_insecure": "true",
+      "output_directory": "{{ user `build_name` }}-qemu",
+      "shutdown_command": "schtasks.exe /Run /TN \"sysprep-shutdown\"",
+      "ssh_host_port_min": 2222,
+      "ssh_host_port_max": 2222,
+      "boot_wait": "2m",
+      "qemuargs": [
+        [ "-m", "4096" ],
+        [ "-smp", "2" ],
+        [ "-drive", "file={{ user `build_name` }}-qemu/{{ .Name }},if=virtio,cache=writeback,discard=ignore,format=qcow2,index=1" ]
+      ],
+      "floppy_files": [
+        "/media/viostor/2k16/amd64/*.inf",
+        "/media/viostor/2k16/amd64/*.cat",
+        "/media/viostor/2k16/amd64/*.sys",
+        "/media/NetKVM/2k16/amd64/*.inf",
+        "/media/NetKVM/2k16/amd64/*.cat",
+        "/media/NetKVM/2k16/amd64/*.sys",
+        "/media/NetKVM/2k16/amd64/*.dll",
+        "./files/2019-{{user `os_flavor`}}/Autounattend.xml"
+      ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell-local",
+      "command": "mkdir -p ./ansible/roles && ansible-galaxy install --force -c -r requirements.yml -p ./ansible/roles"
+    },
+    {
+      "type": "shell-local",
+      "command": "ansible-playbook -i '127.0.0.1,' -T 300 ./ansible/win-build-local.yml"
+    }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "vagrant",
+        "output": "builds/{{.BuildName}}.{{user `base_version`}}.{{user `major_version`}}.{{user `version`}}.box"
+      }
+    ]
+  ]
+}
