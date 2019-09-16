@@ -25,5 +25,5 @@ Vagrant.configure("2") do |config|
       vb.customize ["modifyvm", :id, "--vram", "32"]
       vb.customize ["setextradata", "global", "GUI/SuppressMessages", "all" ]
     end
-
+  end
 end
