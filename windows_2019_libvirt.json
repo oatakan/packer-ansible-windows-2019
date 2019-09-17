@@ -56,7 +56,7 @@
     },
     {
       "type": "shell-local",
-      "command": "ansible-playbook -i '127.0.0.1,' -T 300 ./ansible/win-build-local.yml"
+      "command": "ansible-playbook -i '127.0.0.1,' -T 300 ./ansible/win-build-local.yml --extra-vars 'target_vagrant=yes'"
     }
   ],
   "post-processors": [
