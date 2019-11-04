@@ -28,7 +28,7 @@
       "winrm_use_ssl": "true",
       "winrm_insecure": "true",
       "output_directory": "{{ user `build_name` }}-qemu",
-      "shutdown_command": "schtasks.exe /Run /TN \"sysprep-shutdown\"",
+      "shutdown_command": "schtasks.exe /query /tn \"sysprep-shutdown\" /v /fo list | find \"Status:\"",
       "ssh_host_port_min": 2222,
       "ssh_host_port_max": 2222,
       "boot_wait": "2m",
@@ -52,7 +52,7 @@
   "provisioners": [
     {
       "type": "shell-local",
-      "command": "mkdir -p ./ansible/roles && ansible-galaxy install --force -c -r requirements.yml -p ./ansible/roles"
+      "command": "ansible-galaxy install --force -c -r ./ansible/roles/requirements.yml -p ./ansible/roles"
     },
     {
       "type": "shell-local",
